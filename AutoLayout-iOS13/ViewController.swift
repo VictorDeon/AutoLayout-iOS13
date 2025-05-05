@@ -1,25 +1,46 @@
 //
 //  ViewController.swift
-//  AutoLayout-iOS13
+//  Dicee-iOS13
 //
-//  Created by Angela Yu on 28/06/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
+//  Created by Angela Yu on 11/06/2019.
+//  Copyright © 2019 London App Brewery. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
+    // IBOutlet me permite referencia um elemento do UI
+    @IBOutlet weak var leftDiceImageView: UIImageView!
+    @IBOutlet weak var rightDiceImageView: UIImageView!
     
-    @IBOutlet weak var diceImageView1: UIImageView!
-    @IBOutlet weak var diceImageView2: UIImageView!
-    
+    let DICES: Array<UIImage> = [
+        UIImage(imageLiteralResourceName: "DiceOne"),
+        UIImage(imageLiteralResourceName: "DiceTwo"),
+        UIImage(imageLiteralResourceName: "DiceThree"),
+        UIImage(imageLiteralResourceName: "DiceFour"),
+        UIImage(imageLiteralResourceName: "DiceFive"),
+        UIImage(imageLiteralResourceName: "DiceSix")
+    ]
+    var leftDiceIndex: Int = 0
+    var rightDiceIndex: Int = 0
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("Left Dice Index: \(leftDiceIndex)")
+        print("Right Dice Index: \(rightDiceIndex)")
+    }
+
+    // IBAction me permite referencias uma ação no elemento UI
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        
-        let allDice = [#imageLiteral(resourceName: "DiceOne"), #imageLiteral(resourceName: "DiceTwo"), #imageLiteral(resourceName: "DiceThree"), #imageLiteral(resourceName: "DiceFour"), #imageLiteral(resourceName: "DiceFive"), #imageLiteral(resourceName: "DiceSix")]
-        
-        diceImageView1.image = allDice[Int.random(in: 0...5)]
-        diceImageView2.image = allDice[Int.random(in: 0...5)]
-        
+        leftDiceIndex = Int.random(in: 0...5)
+        // DICES.randomElement() Poderia usar tb
+        leftDiceImageView.image = DICES[leftDiceIndex]
+        print("Left Dice Index: \(leftDiceIndex+1)")
+
+        rightDiceIndex = Int.random(in: 0...5)
+        // DICES.randomElement() Poderia usar tb
+        rightDiceImageView.image = DICES[rightDiceIndex]
+        print("Right Dice Index: \(rightDiceIndex+1)")
     }
     
 }
